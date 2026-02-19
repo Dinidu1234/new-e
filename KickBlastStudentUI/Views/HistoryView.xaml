@@ -1,0 +1,33 @@
+<UserControl x:Class="KickBlastStudentUI.Views.HistoryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+        <Border Style="{StaticResource CardStyle}" Margin="0,0,0,12">
+            <WrapPanel>
+                <ComboBox Width="180" ItemsSource="{Binding AthleteFilters}" SelectedItem="{Binding SelectedAthleteFilter}"/>
+                <ComboBox Width="120" Margin="8,0,0,0" ItemsSource="{Binding MonthFilters}" SelectedItem="{Binding SelectedMonthFilter}"/>
+                <ComboBox Width="120" Margin="8,0,0,0" ItemsSource="{Binding YearFilters}" SelectedItem="{Binding SelectedYearFilter}"/>
+            </WrapPanel>
+        </Border>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions><ColumnDefinition Width="2*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+            <Border Grid.Column="0" Style="{StaticResource CardStyle}" Margin="0,0,12,0">
+                <DataGrid ItemsSource="{Binding CalculationsView}" SelectedItem="{Binding SelectedCalculation}" AutoGenerateColumns="False" CanUserAddRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Athlete" Binding="{Binding Athlete.Name}" Width="*"/>
+                        <DataGridTextColumn Header="Month" Binding="{Binding Month}" Width="80"/>
+                        <DataGridTextColumn Header="Year" Binding="{Binding Year}" Width="80"/>
+                        <DataGridTextColumn Header="Total" Binding="{Binding TotalCostDisplay}" Width="120"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+            <Border Grid.Column="1" Style="{StaticResource CardStyle}">
+                <StackPanel>
+                    <TextBlock Text="Selected Details" FontWeight="Bold" Margin="0,0,0,8"/>
+                    <TextBlock Text="{Binding DetailText}" TextWrapping="Wrap"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

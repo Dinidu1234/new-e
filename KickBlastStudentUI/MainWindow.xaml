@@ -1,0 +1,54 @@
+<Window x:Class="KickBlastStudentUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:KickBlastStudentUI.ViewModels"
+        mc:Ignorable="d"
+        Title="KickBlast Judo - Training Fee Management" Height="720" Width="1200" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0" Style="{StaticResource SidebarStyle}">
+            <StackPanel Margin="12">
+                <TextBlock Text="KickBlast Judo" Style="{StaticResource SidebarTitleTextStyle}"/>
+                <Button Content="Dashboard" Style="{StaticResource SidebarButtonStyle}" Command="{Binding NavigateDashboardCommand}"/>
+                <Button Content="Athletes" Style="{StaticResource SidebarButtonStyle}" Command="{Binding NavigateAthletesCommand}"/>
+                <Button Content="Calculator" Style="{StaticResource SidebarButtonStyle}" Command="{Binding NavigateCalculatorCommand}"/>
+                <Button Content="History" Style="{StaticResource SidebarButtonStyle}" Command="{Binding NavigateHistoryCommand}"/>
+                <Button Content="Settings" Style="{StaticResource SidebarButtonStyle}" Command="{Binding NavigateSettingsCommand}"/>
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Column="1" Margin="16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Border Style="{StaticResource CardStyle}">
+                <DockPanel>
+                    <TextBlock Text="Training Fee Management System" FontWeight="Bold" FontSize="18" VerticalAlignment="Center"/>
+                    <Button Content="Logout" Command="{Binding LogoutCommand}" Width="100" HorizontalAlignment="Right" DockPanel.Dock="Right"/>
+                </DockPanel>
+            </Border>
+
+            <ContentControl Grid.Row="1" Margin="0,12,0,12" Content="{Binding CurrentViewModel}">
+                <ContentControl.Resources>
+                    <DataTemplate DataType="{x:Type vm:DashboardViewModel}"><Views:DashboardView xmlns:Views="clr-namespace:KickBlastStudentUI.Views"/></DataTemplate>
+                    <DataTemplate DataType="{x:Type vm:AthletesViewModel}"><Views:AthletesView xmlns:Views="clr-namespace:KickBlastStudentUI.Views"/></DataTemplate>
+                    <DataTemplate DataType="{x:Type vm:CalculatorViewModel}"><Views:CalculatorView xmlns:Views="clr-namespace:KickBlastStudentUI.Views"/></DataTemplate>
+                    <DataTemplate DataType="{x:Type vm:HistoryViewModel}"><Views:HistoryView xmlns:Views="clr-namespace:KickBlastStudentUI.Views"/></DataTemplate>
+                    <DataTemplate DataType="{x:Type vm:SettingsViewModel}"><Views:SettingsView xmlns:Views="clr-namespace:KickBlastStudentUI.Views"/></DataTemplate>
+                </ContentControl.Resources>
+            </ContentControl>
+
+            <Border Grid.Row="2" Style="{StaticResource CardStyle}">
+                <TextBlock Text="{Binding ToastMessage}" Foreground="DarkSlateBlue" FontWeight="SemiBold"/>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

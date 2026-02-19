@@ -1,0 +1,17 @@
+<UserControl x:Class="KickBlastStudentUI.Views.DashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel>
+        <WrapPanel>
+            <Border Style="{StaticResource CardStyle}" Width="250" Margin="0,0,12,12"><StackPanel><TextBlock Text="Total Athletes"/><TextBlock Text="{Binding TotalAthletes}" FontSize="24" FontWeight="Bold"/></StackPanel></Border>
+            <Border Style="{StaticResource CardStyle}" Width="250" Margin="0,0,12,12"><StackPanel><TextBlock Text="This Month Calculations"/><TextBlock Text="{Binding MonthCalculationCount}" FontSize="24" FontWeight="Bold"/></StackPanel></Border>
+            <Border Style="{StaticResource CardStyle}" Width="250" Margin="0,0,12,12"><StackPanel><TextBlock Text="This Month Revenue"/><TextBlock Text="{Binding MonthRevenue}" FontSize="24" FontWeight="Bold"/></StackPanel></Border>
+        </WrapPanel>
+        <Border Style="{StaticResource CardStyle}">
+            <StackPanel>
+                <TextBlock Text="Latest Updates" FontWeight="Bold" Margin="0,0,0,8"/>
+                <ItemsControl ItemsSource="{Binding LatestUpdates}"/>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</UserControl>
